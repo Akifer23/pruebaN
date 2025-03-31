@@ -9,7 +9,7 @@ if ('serviceWorker' in navigator) {
       }
       return registration.pushManager.subscribe({
         userVisibleOnly: true,
-        applicationServerKey: 'BD4p2ogj5a2zGg8zyZW5rnK3AUvMevcYsLoJxFU0KIGCK-JeIAIiV07BCKXcRRXFe3kHWIhoEwsZxx_GfBCgVmA'
+        applicationServerKey: 'BEItABQtI_IaBbo9ZyFrxCEdXDQp9dXT4WOD7Hw8rUBQb93m0Vx2iRiUXwCw9jshpR5idi7gCbdHJx5ubXgLtiE'
       });
     });
   }).then(subscription => {

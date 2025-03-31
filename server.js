@@ -12,10 +12,10 @@ const express = require('express');
     app.use(express.static(path.join(__dirname, '/')));
 
     // Claves VAPID
-    const publicVapidKey = 'TU_CLAVE_PUBLICA';
-    const privateVapidKey = 'TU_CLAVE_PRIVADA';
+    const publicVapidKey = 'BEItABQtI_IaBbo9ZyFrxCEdXDQp9dXT4WOD7Hw8rUBQb93m0Vx2iRiUXwCw9jshpR5idi7gCbdHJx5ubXgLtiE';
+    const privateVapidKey = 'hEft5bKmjbimdrsYt9KxtOwRBWhnD8sMmZp0RJywA0k';
 
-    webpush.setVapidDetails('mailto:tuemail@example.com', publicVapidKey, privateVapidKey);
+    webpush.setVapidDetails('mailto:lezamaandres47@example.com', publicVapidKey, privateVapidKey);
 
     let subscriptions = [];
 
