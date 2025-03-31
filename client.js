@@ -14,7 +14,13 @@ if ('serviceWorker' in navigator) {
     });
   }).then(subscription => {
     subscribeButton.addEventListener('click', () => {
-      fetch('http://localhost:3000/subscribe', { // Cambia la URL aquí
+      let serverUrl = 'http://localhost:3000/subscribe'; // URL local por defecto
+
+      if (window.location.hostname !== 'localhost' && window.location.hostname !== '127.0.0.1') {
+        serverUrl = 'https://prueban-e4h7.onrender.com/subscribe'; // URL de Render
+      }
+
+      fetch(serverUrl, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
