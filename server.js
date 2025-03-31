@@ -1,15 +1,19 @@
 const express = require('express');
     const webpush = require('web-push');
     const bodyParser = require('body-parser');
-    const cors = require('cors'); // Importa el paquete cors
+    const cors = require('cors');
+    const path = require('path'); // Importa el modulo path.
 
     const app = express();
     app.use(bodyParser.json());
-    app.use(cors()); // Agrega el middleware cors
+    app.use(cors());
+
+    // Sirve archivos estáticos desde el directorio actual
+    app.use(express.static(path.join(__dirname, '/')));
 
     // Claves VAPID
-    const publicVapidKey = 'BD4p2ogj5a2zGg8zyZW5rnK3AUvMevcYsLoJxFU0KIGCK-JeIAIiV07BCKXcRRXFe3kHWIhoEwsZxx_GfBCgVmA';
-    const privateVapidKey = 'NLDK-x6b7DTVNk_ZwdV0YgsDqZAyxO0qvLvSCfaRZNg';
+    const publicVapidKey = 'TU_CLAVE_PUBLICA';
+    const privateVapidKey = 'TU_CLAVE_PRIVADA';
 
     webpush.setVapidDetails('mailto:tuemail@example.com', publicVapidKey, privateVapidKey);
 
@@ -22,7 +26,7 @@ const express = require('express');
     });
 
     function sendNotifications() {
-    const payload = JSON.stringify({ title: 'Notificación Push Minuto!' }); // Modifica el mensaje si lo deseas
+    const payload = JSON.stringify({ title: 'Notificación Push Minuto!' });
     subscriptions.forEach(subscription => {
     webpush.sendNotification(subscription, payload).catch(error => {
     console.error(error);
@@ -30,7 +34,6 @@ const express = require('express');
     });
     }
 
-    // Envía notificaciones cada minuto (60000 milisegundos)
     setInterval(sendNotifications, 60000);
 
     app.post('/sendNotification', (req, res) => {
